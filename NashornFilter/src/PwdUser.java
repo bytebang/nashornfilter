@@ -1,5 +1,10 @@
 
-
+/**
+ * A simple class that represents a line within a `/etc/passwd` file.
+ * 
+ * @author bytebang
+ *
+ */
 public class PwdUser 
 {
 	public String userid;
@@ -10,6 +15,10 @@ public class PwdUser
 	public String homedir;	
 	public String shell;
 	
+	/**
+	 * ctor which creates an object and fills all the (shame on me) public properties.
+	 * @param pwdline
+	 */
 	public PwdUser(String pwdline)
 	{
 		String[] values = pwdline.split(":");
@@ -28,6 +37,9 @@ public class PwdUser
 		this.shell = values[6];
 	}
 
+	/**
+	 * Prints the Object and its properties
+	 */
     @Override
     public String toString()
     {

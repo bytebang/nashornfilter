@@ -6,7 +6,14 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-
+/**
+ * A simple class that shows how to read the /etc/passwd into a filtered, sorted list of objects which
+ * is printed afterwards.
+ * 
+ * It also demosntrates how the NashornFilter can be used.
+ * 
+ * @author bytebang
+ */
 public class ReadPassword
 {
     public static void main(String[] args)
@@ -20,7 +27,7 @@ public class ReadPassword
                                         .withScriptVariableName("o").onErrorDefaultTo(true);
 
             
-            // Yeah - Java8 read, filter and instantiante on one line of code !
+            // Yeah - Java8 read, filter and instantiate on one line of code !
             ArrayList<PwdUser> users =  stream.map(PwdUser::new)
                                             .filter(f::eval)
                                             .sorted((a,b) -> a.userid.compareTo(b.userid))

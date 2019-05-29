@@ -23,13 +23,13 @@ public class ReadPassword
         try (Stream<String> stream = Files.lines(Paths.get("/etc/passwd")))
         {
             // Instantiate the filter
-            NashornFilter f = new NashornFilter("o.userid.match('g') != null || o.uid > 1000")
+            NashornFilter scriptfilter = new NashornFilter("o.userid.match('g') != null || o.uid > 1000")
                                         .withScriptVariableName("o").onErrorDefaultTo(true);
 
             
             // Yeah - Java8 read, filter and instantiate on one line of code !
             ArrayList<PwdUser> users =  stream.map(PwdUser::new)
-                                            .filter(f::eval)
+                                            .filter(scriptfilter::apply)
                                             .sorted((a,b) -> a.userid.compareTo(b.userid))
                                             .collect(Collectors.toCollection(ArrayList::new));
             

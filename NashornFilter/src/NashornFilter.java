@@ -59,7 +59,7 @@ public class NashornFilter
      * @param obj The object which should be checked against the given script
      * @return result of the script execution or in case of an error the default value
      */
-    public Boolean eval(Object obj)
+    public Boolean apply(Object obj)
     {
         try
         {   engine.put(this.scriptVariableName, obj);
